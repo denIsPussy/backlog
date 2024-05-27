@@ -7,6 +7,8 @@ import RegisterPage from './Pages/RegisterPage';
 import TwoFactorAuthPage from './Pages/TwoFactorAuthPage';
 import './transitions.css';
 import Catalog from "./Pages/Catalog";
+import ShoppingCart from "./Pages/CartPage";
+import CartPage from "./Pages/CartPage";
 
 const AnimatedRoutes = () => {
     const location = useLocation(); // Получаем текущее местоположение для ключа анимации
@@ -28,6 +30,7 @@ const AnimatedRoutes = () => {
                     <Route path="/register" element={<RegisterPage />} />
                     <Route path="/two-factor-auth" element={<TwoFactorAuthPage />} />
                     <Route path="/catalog" element={<Catalog />} />
+                    <Route path="/cart" element={<CartPage />} />
                 </Routes>
             </div>
         </animated.div>

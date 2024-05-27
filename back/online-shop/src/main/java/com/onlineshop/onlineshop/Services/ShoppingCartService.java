@@ -31,20 +31,20 @@ public class ShoppingCartService {
     }
 
     public void removeFromCart(ShoppingCart shoppingCart, int productId){
-        List<Optional<CartItem>> cartItem = cartItemRepository.findByProductId(productId);
-        shoppingCart.removeFromCartItems(productId);
-        cartItemRepository.save(cartItem);
-        return shoppingCartRepository.save(shoppingCart);
+//        List<Optional<CartItem>> cartItem = cartItemRepository.findByProductId(productId);
+//        shoppingCart.removeFromCartItems(productId);
+//        cartItemRepository.save(cartItem);
+//        return shoppingCartRepository.save(shoppingCart);
     }
 
     public void update(int productId, int quantity){
         return;
     }
 
-    public ShoppingCart getById(int id){
-        Optional<ShoppingCart> shoppCart = shoppingCartRepository.findById(id);
-        return shoppCart.orElseThrow();
-    }
+//    public ShoppingCart getByUsername(String username){
+//        Optional<ShoppingCart> shoppCart = shoppingCartRepository.findByUsername(username);
+//        return shoppCart.orElseThrow();
+//    }
 
     public List<ShoppingCart> getByUserId(int userId){
         return null;

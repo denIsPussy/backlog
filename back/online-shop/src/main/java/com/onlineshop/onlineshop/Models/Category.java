@@ -1,6 +1,6 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.CategoryDTO;
+import com.onlineshop.onlineshop.Models.DTO.CategoryCompositeDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -23,10 +23,10 @@ public class Category {
 
     }
 
-    public Category(CategoryDTO categoryDTO) {
-        this.id = categoryDTO.getId();
-        this.name = categoryDTO.getName();
-        this.description = categoryDTO.getDescription();
+    public Category(CategoryCompositeDTO categoryCompositeDTO) {
+        this.id = categoryCompositeDTO.getId();
+        this.name = categoryCompositeDTO.getName();
+        this.description = categoryCompositeDTO.getDescription();
     }
 
     public int getId() {

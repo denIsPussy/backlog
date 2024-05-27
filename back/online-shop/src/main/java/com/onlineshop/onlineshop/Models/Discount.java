@@ -1,6 +1,6 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.DiscountDTO;
+import com.onlineshop.onlineshop.Models.DTO.DiscountNestedDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -24,7 +24,7 @@ public class Discount {
 
     }
 
-    public Discount(DiscountDTO discount) {
+    public Discount(DiscountNestedDTO discount) {
         this.id = discount.getId();
         this.description = discount.getDescription();
         this.discountAmountPercentage = discount.getDiscountAmountPercentage();

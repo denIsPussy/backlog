@@ -1,10 +1,8 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.ShoppingCartDTO;
+import com.onlineshop.onlineshop.Models.DTO.ShopCart.ShoppingCartDTO;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,7 +13,8 @@ public class ShoppingCart {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(mappedBy = "shoppingCart")
+    @JoinColumn(name = "cart_id")
+    @OneToMany()
     private List<CartItem> cartItems;
 
     public ShoppingCart() {

@@ -1,8 +1,6 @@
 package com.onlineshop.onlineshop.Controllers;
 
-import com.onlineshop.onlineshop.Models.DTO.OrderDTO;
-import com.onlineshop.onlineshop.Models.DTO.ProductDTO;
-import com.onlineshop.onlineshop.Services.OrderService;
+import com.onlineshop.onlineshop.Models.DTO.Product.ProductViewDTO;
 import com.onlineshop.onlineshop.Services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,24 +14,24 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping(path="/byRating")
-    public List<ProductDTO> filterByRating(@RequestParam String rating){
+    public List<ProductViewDTO> filterByRating(@RequestParam String rating){
         return null;
     }
     @GetMapping(path="/byPrice")
-    public List<ProductDTO> filterByPrice(@RequestParam String price){
+    public List<ProductViewDTO> filterByPrice(@RequestParam String price){
         return null;
     }
     @GetMapping(path="/byCategory")
-    public List<ProductDTO> filterByCategory(@RequestParam String category){
+    public List<ProductViewDTO> filterByCategory(@RequestParam String category){
         return null;
     }
     @GetMapping(path="/search")
-    public List<ProductDTO> search(@RequestParam String name){
+    public List<ProductViewDTO> search(@RequestParam String name){
         return null;
     }
     @GetMapping(path="/")
-    public List<ProductDTO> getAll(){
-        return productService.getAll().stream().map(ProductDTO::new).toList();
+    public List<ProductViewDTO> getAll(){
+        return productService.getAll().stream().map(ProductViewDTO::new).toList();
     }
 
     @GetMapping(path="/test")

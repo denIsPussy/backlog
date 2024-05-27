@@ -1,6 +1,7 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.StoreItemDTO;
+import com.onlineshop.onlineshop.Models.DTO.StoreItem.StoreItemNestedDTO;
+import com.onlineshop.onlineshop.Models.DTO.StoreItem.StoreItemViewDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 @Entity
@@ -16,23 +17,30 @@ public class StoreItem {
     private int quantity;
 
     @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
+
+    @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne
-    @JoinColumn(name = "store_id")
-    private Store store;
 
     public StoreItem(){
 
     }
 
-//    public StoreItem(StoreItemDTO storeItemDTO) {
-//        this.id = storeItemDTO.getId();
-//        this.quantity = storeItemDTO.getQuantity();
-//        this.product = storeItemDTO.;
-//        this.store = store;
-//    }
+    public StoreItem(StoreItemViewDTO storeItemViewDTO) {
+        this.id = storeItemViewDTO.getId();
+        this.quantity = storeItemViewDTO.getQuantity();
+        this.product = new Product(storeItemViewDTO.getProductNestedDTO());
+    }
+
+    public StoreItem(StoreItemNestedDTO storeItemNestedDTO) {
+        this.id = storeItemNestedDTO.getId();
+        this.quantity = storeItemNestedDTO.getQuantity();
+        this.product = new Product(storeItemNestedDTO.getProductNestedDTO());
+        this.store = new Store(storeItemNestedDTO.getStoreNestedDTO());
+    }
 
     public int getId() {
         return id;
@@ -50,19 +58,19 @@ public class StoreItem {
         this.quantity = quantity;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
     public Store getStore() {
         return store;
     }
 
     public void setStore(Store store) {
         this.store = store;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

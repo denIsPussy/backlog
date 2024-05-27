@@ -1,6 +1,6 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.StatusDTO;
+import com.onlineshop.onlineshop.Models.DTO.StatusNestedDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 @Entity
@@ -19,9 +19,9 @@ public class Status {
 
     }
 
-    public Status(StatusDTO statusDTO) {
-        this.id = statusDTO.getId();
-        this.description = statusDTO.getDescription();
+    public Status(StatusNestedDTO statusNestedDTO) {
+        this.id = statusNestedDTO.getId();
+        this.description = statusNestedDTO.getDescription();
     }
 
     public int getId() {

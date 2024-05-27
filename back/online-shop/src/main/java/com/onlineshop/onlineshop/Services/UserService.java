@@ -1,5 +1,7 @@
 package com.onlineshop.onlineshop.Services;
 
+import com.onlineshop.onlineshop.Models.Order;
+import com.onlineshop.onlineshop.Models.ShoppingCart;
 import com.onlineshop.onlineshop.Models.User;
 import com.onlineshop.onlineshop.Repositories.UserRepository;
 import jakarta.transaction.Transactional;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import org.springframework.mail.SimpleMailMessage;
@@ -31,6 +34,28 @@ public class UserService implements UserDetailsService {
         }
         catch (Exception e){
             return "Что-то пошло не так. Попробуйте позже";
+        }
+    }
+
+    public ShoppingCart getShopCartByUsername(String username){
+        try{
+            Optional<User> findUser = userRepository.findByUsername(username);
+            User user = findUser.orElseThrow();
+            return user.getShoppingCart();
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
+
+    public List<Order> getOrders(String username){
+        try{
+            Optional<User> findUser = userRepository.findByUsername(username);
+            User user = findUser.orElseThrow();
+            return user.getOrderList();
+        }
+        catch (Exception e){
+            return null;
         }
     }
 

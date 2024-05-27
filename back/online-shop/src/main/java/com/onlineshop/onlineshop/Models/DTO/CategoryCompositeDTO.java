@@ -2,16 +2,16 @@ package com.onlineshop.onlineshop.Models.DTO;
 
 import com.onlineshop.onlineshop.Models.Category;
 
-public class CategoryDTO {
+public class CategoryCompositeDTO {
     private int id;
     private String name;
     private String description;
 
-    public CategoryDTO(){
+    public CategoryCompositeDTO(){
 
     }
 
-    public CategoryDTO(Category category){
+    public CategoryCompositeDTO(Category category){
         this.id = category.getId();
         this.name = category.getName();
         this.description = category.getDescription();

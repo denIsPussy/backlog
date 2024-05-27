@@ -1,15 +1,11 @@
-package com.onlineshop.onlineshop.Models.DTO;
+package com.onlineshop.onlineshop.Models.DTO.Order;
 
 import com.onlineshop.onlineshop.Models.*;
-import jakarta.persistence.Column;
-import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotNull;
+import com.onlineshop.onlineshop.Models.DTO.OrderItem.OrderItemViewDTO;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class OrderDTO {
-
+public class OrderViewDTO {
     private int id;
     private float totalAmount;
     private String creationDate;
@@ -17,12 +13,12 @@ public class OrderDTO {
     private Status status;
     private PaymentMethod paymentMethod;
     private ShippingMethod shippingMethod;
-    private List<CartItemDTO> productList;
+    private List<OrderItemViewDTO> orderItems;
 
-    public OrderDTO() {
+    public OrderViewDTO() {
     }
 
-    public OrderDTO(Order order) {
+    public OrderViewDTO(Order order) {
         this.id = order.getId();
         this.totalAmount = order.getTotalAmount();
         this.creationDate = order.getCreationDate();
@@ -30,7 +26,7 @@ public class OrderDTO {
         this.status = order.getStatus();
         this.paymentMethod = order.getPaymentMethod();
         this.shippingMethod = order.getShippingMethod();
-        this.productList = order.getProductList().stream().map(CartItemDTO::new).toList();
+        this.orderItems = order.getOrderItems().stream().map(OrderItemViewDTO::new).toList();
     }
 
     public int getId() {
@@ -61,7 +57,7 @@ public class OrderDTO {
         return shippingMethod;
     }
 
-    public List<CartItemDTO> getProductList() {
-        return productList;
+    public List<OrderItemViewDTO> getOrderItems() {
+        return orderItems;
     }
 }

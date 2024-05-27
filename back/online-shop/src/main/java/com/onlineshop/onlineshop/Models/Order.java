@@ -1,10 +1,9 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.OrderDTO;
+import com.onlineshop.onlineshop.Models.DTO.Order.OrderViewDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -38,23 +37,22 @@ public class Order {
     @ManyToOne
     private ShippingMethod shippingMethod;
 
-    @JoinColumn(name = "order_id")
-    @OneToMany
-    private List<CartItem> productList;
+    @OneToMany(mappedBy = "order")
+    private List<OrderItem> orderItems;
 
     public Order(){
 
     }
 
-    public Order(OrderDTO orderDTO) {
-        this.id = orderDTO.getId();
-        this.totalAmount = orderDTO.getTotalAmount();
-        this.creationDate = orderDTO.getCreationDate();
-        this.completionDate = orderDTO.getCompletionDate();
-        this.status = orderDTO.getStatus();
-        this.paymentMethod = orderDTO.getPaymentMethod();
-        this.shippingMethod = orderDTO.getShippingMethod();
-        this.productList = orderDTO.getProductList().stream().map(CartItem::new).toList();
+    public Order(OrderViewDTO orderViewDTO) {
+        this.id = orderViewDTO.getId();
+        this.totalAmount = orderViewDTO.getTotalAmount();
+        this.creationDate = orderViewDTO.getCreationDate();
+        this.completionDate = orderViewDTO.getCompletionDate();
+        this.status = orderViewDTO.getStatus();
+        this.paymentMethod = orderViewDTO.getPaymentMethod();
+        this.shippingMethod = orderViewDTO.getShippingMethod();
+        this.orderItems = orderViewDTO.getOrderItems().stream().map(OrderItem::new).toList();
     }
 
     public int getId() {
@@ -113,19 +111,19 @@ public class Order {
         this.shippingMethod = shippingMethod;
     }
 
-    public List<CartItem> getProductList() {
-        return productList;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setProductList(List<CartItem> productList) {
-        this.productList = productList;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 
-    public void addToProductList(CartItem cartItem) {
-        this.productList.add(cartItem);
+    public void addToOrderItems(OrderItem orderItem) {
+        this.orderItems.add(orderItem);
     }
 
-    public void removeFromProductList(CartItem cartItem) {
-        this.productList.removeIf(item -> item.getId() == cartItem.getId());
+    public void removeFromOrderItems(OrderItem orderItem) {
+        this.orderItems.removeIf(item -> item.getId() == orderItem.getId());
     }
 }

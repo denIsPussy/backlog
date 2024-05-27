@@ -1,4 +1,4 @@
-package com.onlineshop.onlineshop.Models.DTO;
+package com.onlineshop.onlineshop.Models.DTO.User;
 
 public class JwtAuthenticationDTO {
     private String token;

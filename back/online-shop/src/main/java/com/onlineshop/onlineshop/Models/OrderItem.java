@@ -1,33 +1,33 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.ShopCart.CartItemDetailDTO;
+import com.onlineshop.onlineshop.Models.DTO.OrderItem.OrderItemViewDTO;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "cartItems")
-public class CartItem {
+@Table(name = "order_items")
+public class OrderItem {
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "quantity")
-    @NotNull
-    private int quantity;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "product_id")
     private Product product;
 
-    public CartItem(){
+    private int quantity;
+
+    public OrderItem(){
     }
 
-    public CartItem(CartItemDetailDTO cartItemDetailDTO){
-        this.id = cartItemDetailDTO.getId();
-        //this.product = new Product(cartItemDTO.getProduct());
-        //this.shoppingCart = new ShoppingCart(cartItemDTO.getShoppingCart());
-        this.quantity = cartItemDetailDTO.getQuantity();
+    public OrderItem(OrderItemViewDTO orderItemViewDTO){
+        this.id = orderItemViewDTO.getId();
+        this.product = new Product(orderItemViewDTO.getProduct());
+        this.quantity = orderItemViewDTO.getQuantity();
     }
 
     public int getId() {
@@ -52,5 +52,13 @@ public class CartItem {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 }

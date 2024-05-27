@@ -1,4 +1,4 @@
-package com.onlineshop.onlineshop.Models.DTO;
+package com.onlineshop.onlineshop.Models.DTO.User;
 
 import com.onlineshop.onlineshop.Models.User;
 

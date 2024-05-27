@@ -1,7 +1,7 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.SignUpDTO;
-import com.onlineshop.onlineshop.Models.DTO.UserDTO;
+import com.onlineshop.onlineshop.Models.DTO.User.SignUpDTO;
+import com.onlineshop.onlineshop.Models.DTO.User.UserDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 

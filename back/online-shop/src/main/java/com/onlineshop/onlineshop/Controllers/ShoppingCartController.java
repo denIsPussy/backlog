@@ -1,8 +1,8 @@
 package com.onlineshop.onlineshop.Controllers;
 
 import com.onlineshop.onlineshop.Models.CartItem;
-import com.onlineshop.onlineshop.Models.DTO.CartItemDTO;
-import com.onlineshop.onlineshop.Models.DTO.ShoppingCartDTO;
+import com.onlineshop.onlineshop.Models.DTO.ShopCart.CartItemDetailDTO;
+import com.onlineshop.onlineshop.Models.DTO.ShopCart.ShoppingCartDTO;
 import com.onlineshop.onlineshop.Models.ShoppingCart;
 import com.onlineshop.onlineshop.Models.User;
 import com.onlineshop.onlineshop.Services.ShoppingCartService;
@@ -25,11 +25,11 @@ public class ShoppingCartController {
 
     }
     @PostMapping(path="/addToCart")
-    public ShoppingCartDTO addToCart(@RequestBody CartItemDTO cartItemDTO){
+    public ShoppingCartDTO addToCart(@RequestBody CartItemDetailDTO cartItemDetailDTO){
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userService.getByUsername(userDetails.getUsername());
         ShoppingCart shoppCart = user.getShoppingCart();
-        ShoppingCart newCart = shoppingCartService.addToCart(shoppCart, new CartItem(cartItemDTO));
+        ShoppingCart newCart = shoppingCartService.addToCart(shoppCart, new CartItem(cartItemDetailDTO));
         return new ShoppingCartDTO(newCart);
     }
     @DeleteMapping(path="/removeFromCart/{id}")
@@ -37,16 +37,12 @@ public class ShoppingCartController {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userService.getByUsername(userDetails.getUsername());
         ShoppingCart shoppCart = user.getShoppingCart();
-        ShoppingCart newCart = shoppingCartService.removeFromCart(shoppCart, productId);
-        return new ShoppingCartDTO(newCart);
+        //ShoppingCart newCart = shoppingCartService.removeFromCart(shoppCart, productId);
+        //return new ShoppingCartDTO(newCart);
     }
     @PutMapping(path="/updateCartItems")
-    public void updateCartItems(@RequestBody CartItemDTO cartItemDTO){
+    public void updateCartItems(@RequestBody CartItemDetailDTO cartItemDetailDTO){
 
-    }
-    @GetMapping(path="/{id}")
-    public ShoppingCartDTO getById(@PathVariable int id){
-        return new ShoppingCartDTO(shoppingCartService.getById(id));
     }
     @GetMapping(path="/byUser/{id}")
     public ShoppingCartDTO getByUserId(@PathVariable int userId){

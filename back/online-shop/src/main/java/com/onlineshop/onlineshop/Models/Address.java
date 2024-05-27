@@ -1,6 +1,6 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.AddressDTO;
+import com.onlineshop.onlineshop.Models.DTO.AddressNestedDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -36,7 +36,7 @@ public class Address {
 
     }
 
-    public Address(AddressDTO address) {
+    public Address(AddressNestedDTO address) {
         this.id = id;
         this.city = city;
         this.street = street;

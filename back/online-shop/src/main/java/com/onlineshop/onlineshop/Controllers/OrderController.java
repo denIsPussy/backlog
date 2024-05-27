@@ -1,12 +1,13 @@
 package com.onlineshop.onlineshop.Controllers;
 
-import com.onlineshop.onlineshop.Models.DTO.CartItemDTO;
-import com.onlineshop.onlineshop.Models.DTO.OrderDTO;
-import com.onlineshop.onlineshop.Models.DTO.ShoppingCartDTO;
+import com.onlineshop.onlineshop.Models.DTO.Order.OrderViewDTO;
+import com.onlineshop.onlineshop.Models.Order;
 import com.onlineshop.onlineshop.Services.OrderService;
-import com.onlineshop.onlineshop.Services.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/order")
 public class OrderController {
@@ -14,15 +15,16 @@ public class OrderController {
     private OrderService orderService;
 
     @PostMapping(path="/create")
-    public void create(@RequestBody OrderDTO orderDTO){
+    public void create(@RequestBody OrderViewDTO orderViewDTO){
 
     }
     @GetMapping(path="/{id}")
-    public OrderDTO getById(@PathVariable int id){
+    public OrderViewDTO getById(@PathVariable int id){
         return null;
     }
     @GetMapping(path="/byUser/{id}")
-    public OrderDTO getByUserId(@PathVariable int userId){
-        return null;
+    public List<OrderViewDTO> getByUsername(@RequestParam String username){
+        List<Order> orders = orderService.getByUsername(username);
+        return orders.stream().map(OrderViewDTO::new).toList();
     }
 }

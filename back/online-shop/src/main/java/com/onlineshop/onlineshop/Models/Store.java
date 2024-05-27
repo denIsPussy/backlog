@@ -1,11 +1,9 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.StoreDTO;
-import com.onlineshop.onlineshop.Models.DTO.StoreItemDTO;
+import com.onlineshop.onlineshop.Models.DTO.Store.StoreNestedDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -29,6 +27,12 @@ public class Store {
 
     public Store(){
 
+    }
+
+    public Store(StoreNestedDTO storeNestedDTO) {
+        this.id = storeNestedDTO.getId();
+        this.name = storeNestedDTO.getName();
+        this.address = new Address(storeNestedDTO.getAddress());
     }
 
     public int getId() {

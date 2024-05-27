@@ -1,6 +1,6 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.PaymentMethodDTO;
+import com.onlineshop.onlineshop.Models.DTO.PaymentMethodNestedDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 @Entity
@@ -19,9 +19,9 @@ public class PaymentMethod {
 
     }
 
-    public PaymentMethod(PaymentMethodDTO paymentMethodDTO) {
-        this.id = paymentMethodDTO.getId();
-        this.description = paymentMethodDTO.getDescription();
+    public PaymentMethod(PaymentMethodNestedDTO paymentMethodNestedDTO) {
+        this.id = paymentMethodNestedDTO.getId();
+        this.description = paymentMethodNestedDTO.getDescription();
     }
 
     public int getId() {

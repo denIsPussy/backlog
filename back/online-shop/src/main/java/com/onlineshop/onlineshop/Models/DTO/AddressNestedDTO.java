@@ -1,10 +1,8 @@
 package com.onlineshop.onlineshop.Models.DTO;
 
 import com.onlineshop.onlineshop.Models.Address;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotNull;
 
-public class AddressDTO {
+public class AddressNestedDTO {
     private int id;
     private String city;
     private String street;
@@ -12,11 +10,11 @@ public class AddressDTO {
     private int postalCode;
     private int apartment;
 
-    public AddressDTO(){
+    public AddressNestedDTO(){
 
     }
 
-    public AddressDTO(Address address) {
+    public AddressNestedDTO(Address address) {
         this.id = address.getId();
         this.city = address.getCity();
         this.street = address.getStreet();

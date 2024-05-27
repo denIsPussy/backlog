@@ -1,6 +1,7 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.ProductDTO;
+import com.onlineshop.onlineshop.Models.DTO.Product.ProductNestedDTO;
+import com.onlineshop.onlineshop.Models.DTO.Product.ProductViewDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -34,12 +35,14 @@ public class Product {
     @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] image;
 
-
     @OneToMany(mappedBy = "product")
     private List<StoreItem> storeList;
 
     @OneToMany(mappedBy = "product")
-    private List<CartItem> shoppingCartList;
+    private List<OrderItem> orderItems;
+//
+//    @OneToMany(mappedBy = "product")
+//    private List<CartItem> cartItems;
 
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
@@ -61,18 +64,26 @@ public class Product {
 
     }
 
-//    public Product(ProductDTO productDTO){
-//        this.id = productDTO.getId();
-//        this.name = productDTO.getName();
-//        this.price = productDTO.getId();
-//        this.description = productDTO.getDescription();
-//        this.rating = productDTO.getRating();
-//        this.image = productDTO.getImage();
-//        this.storeList = productDTO.getStoreList().stream().map(StoreItem::new).toList();
-//        this.shoppingCartList = productDTO.get();
-//        this.discountList = productDTO.getDiscountList().stream().map(Discount::new).toList();
-//        this.categoryList = productDTO.getCategoryList().stream().map(Category::new).toList();
-//    }
+    public Product(ProductViewDTO productViewDTO){
+        this.id = productViewDTO.getId();
+        this.name = productViewDTO.getName();
+        this.price = productViewDTO.getId();
+        this.description = productViewDTO.getDescription();
+        this.rating = productViewDTO.getRating();
+        this.image = productViewDTO.getImage();
+        this.storeList = productViewDTO.getStoreList().stream().map(StoreItem::new).toList();
+        this.discountList = productViewDTO.getDiscountList().stream().map(Discount::new).toList();
+        this.categoryList = productViewDTO.getCategoryList().stream().map(Category::new).toList();
+    }
+
+    public Product(ProductNestedDTO productNestedDTO){
+        this.id = productNestedDTO.getId();
+        this.name = productNestedDTO.getName();
+        this.price = productNestedDTO.getId();
+        this.description = productNestedDTO.getDescription();
+        this.rating = productNestedDTO.getRating();
+        this.image = productNestedDTO.getImage();
+    }
 
     public int getId() {
         return id;
@@ -146,11 +157,35 @@ public class Product {
         this.storeList = storeProducts;
     }
 
-    public List<CartItem> getShoppingCartList() {
-        return shoppingCartList;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setShoppingCartList(List<CartItem> shoppingCartList) {
-        this.shoppingCartList = shoppingCartList;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
+
+    public void addToOrderItems(OrderItem orderItem) {
+        this.orderItems.add(orderItem);
+    }
+
+    public void removeFromOrderItems(OrderItem orderItem) {
+        this.orderItems.removeIf(item -> item.getId() == orderItem.getId());
+    }
+//
+//    public List<CartItem> getCartItems() {
+//        return cartItems;
+//    }
+//
+//    public void setCartItems(List<CartItem> cartItems) {
+//        this.cartItems = cartItems;
+//    }
+//
+//    public void addToCartItems(CartItem cartItem) {
+//        this.cartItems.add(cartItem);
+//    }
+//
+//    public void removeFromCartItems(CartItem cartItem) {
+//        this.cartItems.removeIf(item -> item.getId() == cartItem.getId());
+//    }
 }

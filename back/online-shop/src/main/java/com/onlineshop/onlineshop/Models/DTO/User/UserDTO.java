@@ -1,5 +1,7 @@
-package com.onlineshop.onlineshop.Models.DTO;
+package com.onlineshop.onlineshop.Models.DTO.User;
 
+import com.onlineshop.onlineshop.Models.DTO.NotificationDTO;
+import com.onlineshop.onlineshop.Models.DTO.Order.OrderViewDTO;
 import com.onlineshop.onlineshop.Models.ShoppingCart;
 import com.onlineshop.onlineshop.Models.User;
 
@@ -21,7 +23,7 @@ public class UserDTO {
     private boolean isChildModeEnabled;
     private boolean areNotificationsEnabled;
     private ShoppingCart shoppingCart;
-    private List<OrderDTO> orderList;
+    private List<OrderViewDTO> orderList;
     private List<NotificationDTO> notificationList;
 
     public UserDTO(){
@@ -43,7 +45,7 @@ public class UserDTO {
         this.isChildModeEnabled = user.isChildModeEnabled();
         this.areNotificationsEnabled = user.isAreNotificationsEnabled();
         this.shoppingCart = user.getShoppingCart();
-        this.orderList = user.getOrderList().stream().map(OrderDTO::new).toList();
+        this.orderList = user.getOrderList().stream().map(OrderViewDTO::new).toList();
         this.notificationList = user.getNotificationList().stream().map(NotificationDTO::new).toList();
     }
 
@@ -103,7 +105,7 @@ public class UserDTO {
         return shoppingCart;
     }
 
-    public List<OrderDTO> getOrderList() {
+    public List<OrderViewDTO> getOrderList() {
         return orderList;
     }
 
