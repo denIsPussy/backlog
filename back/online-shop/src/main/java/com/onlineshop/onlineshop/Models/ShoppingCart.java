@@ -48,4 +48,12 @@ public class ShoppingCart {
     public void removeFromCartItems(CartItem cartItem) {
         this.cartItems.removeIf(item -> item.getId() == cartItem.getId());
     }
+
+    public void increseProductQuantity(int productId) {
+        this.cartItems.stream().filter(item -> item.getId() == productId).findFirst().orElseThrow().increaseQuantity();
+    }
+
+    public void reduceProductQuantity(int productId) {
+        this.cartItems.stream().filter(item -> item.getId() == productId).findFirst().orElseThrow().reduceQuantity();
+    }
 }

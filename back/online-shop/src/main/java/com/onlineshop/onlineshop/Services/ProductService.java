@@ -10,8 +10,9 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @Transactional
 public class ProductService {
@@ -35,6 +36,9 @@ public class ProductService {
     }
     public List<Product> getAll(){
         return productRepository.findAll();
+    }
+    public Optional<Product> getById(int productId){
+        return productRepository.findById(productId);
     }
     public void test(){
         ClassPathResource imageResource = new ClassPathResource("images/word.png");

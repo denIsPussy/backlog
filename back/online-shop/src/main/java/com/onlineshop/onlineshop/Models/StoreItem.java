@@ -38,7 +38,6 @@ public class StoreItem {
     public StoreItem(StoreItemNestedDTO storeItemNestedDTO) {
         this.id = storeItemNestedDTO.getId();
         this.quantity = storeItemNestedDTO.getQuantity();
-        this.product = new Product(storeItemNestedDTO.getProductNestedDTO());
         this.store = new Store(storeItemNestedDTO.getStoreNestedDTO());
     }
 

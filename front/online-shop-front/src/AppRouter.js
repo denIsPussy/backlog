@@ -23,7 +23,7 @@ const AnimatedRoutes = () => {
 
     return transitions((props, item) => (
         <animated.div style={props}>
-            <div style={{position: 'absolute', width: '100%'}}>
+            <div style={{position: 'absolute', width: '100%', backgroundColor: '#f6f6f6'}}>
                 <Routes location={item}>
                     <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<LoginPage />} />

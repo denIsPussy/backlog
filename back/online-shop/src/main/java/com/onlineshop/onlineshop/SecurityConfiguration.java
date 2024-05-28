@@ -30,7 +30,7 @@ public class SecurityConfiguration {
     public UserDetailsService userDetailsService() {
         return new UserService();
     }
-
+//, "/products/**", "/user/**", "/order/**"
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -38,7 +38,7 @@ public class SecurityConfiguration {
                 .csrf(csrf -> csrf.disable())
                 // Настройка правил авторизации
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/authenticate", "/register", "/verifyTwoFactorCode", "/products/**", "/user/getShopCart", "/order/**").permitAll()
+                        .requestMatchers("/authenticate", "/register", "/verifyTwoFactorCode", "/products/test").permitAll()
                         .anyRequest().authenticated())
                 // Управление сессией
                 .sessionManagement(session -> session

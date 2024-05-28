@@ -5,7 +5,7 @@ import { getAllProducts } from '../Utils/APIService';
 import ProductDTO from '../Components/ModelDTO/ProductDTO';
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
-import './catalog.css';
+import '../css/catalog.css';
 import {Card, Col, Container, Row} from "react-bootstrap";
 
 export default function Catalog() {

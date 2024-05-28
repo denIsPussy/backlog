@@ -6,7 +6,7 @@ import java.util.List;
 
 public class ShoppingCartDTO {
     private int id;
-    private List<CartItemDetailDTO> cartItems;
+    private List<CartItemViewDTO> cartItems;
 
     public ShoppingCartDTO(){
 
@@ -14,14 +14,14 @@ public class ShoppingCartDTO {
 
     public ShoppingCartDTO(ShoppingCart shoppingCart) {
         this.id = shoppingCart.getId();
-        this.cartItems = shoppingCart.getCartItems().stream().map(CartItemDetailDTO::new).toList();
+        this.cartItems = shoppingCart.getCartItems().stream().map(CartItemViewDTO::new).toList();
     }
 
     public int getId() {
         return id;
     }
 
-    public List<CartItemDetailDTO> getCartItems() {
+    public List<CartItemViewDTO> getCartItems() {
         return cartItems;
     }
 }

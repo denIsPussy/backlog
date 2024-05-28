@@ -1,7 +1,7 @@
 package com.onlineshop.onlineshop.Controllers;
 
 import com.onlineshop.onlineshop.Models.CartItem;
-import com.onlineshop.onlineshop.Models.DTO.ShopCart.CartItemDetailDTO;
+import com.onlineshop.onlineshop.Models.DTO.ShopCart.CartItemViewDTO;
 import com.onlineshop.onlineshop.Models.DTO.ShopCart.ShoppingCartDTO;
 import com.onlineshop.onlineshop.Models.ShoppingCart;
 import com.onlineshop.onlineshop.Models.User;
@@ -25,11 +25,11 @@ public class ShoppingCartController {
 
     }
     @PostMapping(path="/addToCart")
-    public ShoppingCartDTO addToCart(@RequestBody CartItemDetailDTO cartItemDetailDTO){
+    public ShoppingCartDTO addToCart(@RequestBody CartItemViewDTO cartItemViewDTO){
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userService.getByUsername(userDetails.getUsername());
         ShoppingCart shoppCart = user.getShoppingCart();
-        ShoppingCart newCart = shoppingCartService.addToCart(shoppCart, new CartItem(cartItemDetailDTO));
+        ShoppingCart newCart = shoppingCartService.addToCart(shoppCart, new CartItem(cartItemViewDTO));
         return new ShoppingCartDTO(newCart);
     }
     @DeleteMapping(path="/removeFromCart/{id}")
@@ -41,7 +41,7 @@ public class ShoppingCartController {
         //return new ShoppingCartDTO(newCart);
     }
     @PutMapping(path="/updateCartItems")
-    public void updateCartItems(@RequestBody CartItemDetailDTO cartItemDetailDTO){
+    public void updateCartItems(@RequestBody CartItemViewDTO cartItemViewDTO){
 
     }
     @GetMapping(path="/byUser/{id}")

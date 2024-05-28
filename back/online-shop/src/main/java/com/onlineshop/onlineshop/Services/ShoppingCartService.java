@@ -46,6 +46,16 @@ public class ShoppingCartService {
 //        return shoppCart.orElseThrow();
 //    }
 
+    public void reduceProductQuantity(ShoppingCart shoppingCart, int productId){
+        shoppingCart.reduceProductQuantity(productId);
+        shoppingCartRepository.save(shoppingCart);
+    }
+
+    public void increaseProductQuantity(ShoppingCart shoppingCart, int productId){
+        shoppingCart.increseProductQuantity(productId);
+        shoppingCartRepository.save(shoppingCart);
+    }
+
     public List<ShoppingCart> getByUserId(int userId){
         return null;
     }

@@ -1,6 +1,6 @@
 package com.onlineshop.onlineshop.Models;
 
-import com.onlineshop.onlineshop.Models.DTO.ShopCart.CartItemDetailDTO;
+import com.onlineshop.onlineshop.Models.DTO.ShopCart.CartItemViewDTO;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -23,11 +23,11 @@ public class CartItem {
     public CartItem(){
     }
 
-    public CartItem(CartItemDetailDTO cartItemDetailDTO){
-        this.id = cartItemDetailDTO.getId();
+    public CartItem(CartItemViewDTO cartItemViewDTO){
+        this.id = cartItemViewDTO.getId();
         //this.product = new Product(cartItemDTO.getProduct());
         //this.shoppingCart = new ShoppingCart(cartItemDTO.getShoppingCart());
-        this.quantity = cartItemDetailDTO.getQuantity();
+        this.quantity = cartItemViewDTO.getQuantity();
     }
 
     public int getId() {
@@ -52,5 +52,13 @@ public class CartItem {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public void increaseQuantity() {
+        this.quantity++;
+    }
+
+    public void reduceQuantity() {
+        this.quantity--;
     }
 }

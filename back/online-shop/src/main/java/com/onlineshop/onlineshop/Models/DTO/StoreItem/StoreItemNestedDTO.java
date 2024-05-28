@@ -7,7 +7,6 @@ import com.onlineshop.onlineshop.Models.StoreItem;
 public class StoreItemNestedDTO {
     private int id;
     private int quantity;
-    private ProductNestedDTO productNestedDTO;
     private StoreNestedDTO storeNestedDTO;
 
     public StoreItemNestedDTO(){
@@ -17,7 +16,6 @@ public class StoreItemNestedDTO {
     public StoreItemNestedDTO(StoreItem storeItem) {
         this.id = storeItem.getId();
         this.quantity = storeItem.getQuantity();
-        this.productNestedDTO = new ProductNestedDTO(storeItem.getProduct());
         this.storeNestedDTO = new StoreNestedDTO(storeItem.getStore());
     }
 
@@ -27,10 +25,6 @@ public class StoreItemNestedDTO {
 
     public int getQuantity() {
         return quantity;
-    }
-
-    public ProductNestedDTO getProductNestedDTO() {
-        return productNestedDTO;
     }
 
     public StoreNestedDTO getStoreNestedDTO() {

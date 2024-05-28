@@ -11,6 +11,7 @@ import java.util.List;
 public class ProductViewDTO {
     private int id;
     private String name;
+    private double price;
     private String description;
     private float rating;
     private byte[] image;
@@ -24,6 +25,7 @@ public class ProductViewDTO {
     public ProductViewDTO(Product product) {
         this.id = product.getId();
         this.name = product.getName();
+        this.price = product.getPrice();
         this.description = product.getDescription();
         this.rating = product.getRating();
         this.image = product.getImage();
@@ -38,6 +40,10 @@ public class ProductViewDTO {
 
     public String getName() {
         return name;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public String getDescription() {
